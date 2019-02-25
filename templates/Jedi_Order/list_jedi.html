@@ -1,0 +1,25 @@
+{% extends 'Jedi_Order/base.html' %}
+
+{% block title %} {{ block.super }} Jedis {% endblock %}
+
+{% block content %}
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Planet</td>
+        <td>Padawans count</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for jedi in jedis %}
+    <tr>
+        <td>{{ jedi.name }}</td>
+        <td>{{ jedi.planet }}</td>
+        <td>{{ jedi.padawans_cnt }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
