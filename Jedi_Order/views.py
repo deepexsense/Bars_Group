@@ -79,7 +79,7 @@ class CandidateToPadawanView(DetailView, FormMixin):
         form.save()
         return super(CandidateToPadawanView, self).form_valid(form)
 
-    def post(self):
+    def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
