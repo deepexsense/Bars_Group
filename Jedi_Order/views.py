@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, FormView
 from django.views.generic.edit import FormMixin
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
 
 from .forms import CandidateForm, ChallengeForm, JediSelectForm, AddPadawan
 from .models import Challenge, Candidate, Jedi
@@ -76,6 +77,8 @@ class CandidateToPadawanView(DetailView, FormMixin):
                 'jedi': jedi}
 
     def form_valid(self, form):
+        candidate = Candidate.objects.get(id=self.kwargs.get('candidate_id'))
+        send_mail('Congratulations!', 'Congratulations, now you padawan!', 'buga7822@gmail.com', [candidate.email,], fail_silently=False)
         form.save()
         return super(CandidateToPadawanView, self).form_valid(form)
 
